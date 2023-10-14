@@ -67,11 +67,15 @@ if (!fs.existsSync("./data/contacts.json")) {
 //   });
 // };
 
-const simpanContact = (nama, email, nomor) => {
-  const contact = { nama, email, nomor };
-
+const loadContact = () => {
   const file = fs.readFileSync("./data/contacts.json", "utf-8");
   const contacts = JSON.parse(file);
+  return contacts
+}
+
+const simpanContact = (nama, email, nomor) => {
+  const contact = { nama, email, nomor };  
+  const contacts = loadContact();
 
   //cek duplikat
   const duplikat = contacts.find((contact) => contact.nama === nama);
@@ -107,7 +111,13 @@ const simpanContact = (nama, email, nomor) => {
 
   fs.writeFileSync("./data/contacts.json", JSON.stringify(contacts));
 
-  console.log(chalk.green.inverse.bold("Terima kasih sudah memasukkan data kamu"));
+  console.log(
+    chalk.green.inverse.bold("Terima kasih sudah memasukkan data kamu")
+  );
 };
 
-module.exports = { simpanContact };
+const listContacts = () => {
+  
+};
+
+module.exports = { simpanContact, listContacts };

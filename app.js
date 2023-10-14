@@ -50,13 +50,23 @@ yargs.command({
     nomor: {
       describe: 'Nomor Hp',
       demandOption: true,
-      type: 'stringg'
+      type: 'string'
     }
   },
   
   handler(argv){
    contact.simpanContact( argv.nama, argv.email, argv.nomor )
   }
-});
+}).demandCommand();
+
+//MENAMPILKN NAMA & NOMOR CONTACT
+yargs.command({
+  command: "list",
+  describe: "Menampilkan semua nama & nomor hp",
+  handler(){
+    contact.listContacts();
+  }
+})
+
 
 yargs.parse();
