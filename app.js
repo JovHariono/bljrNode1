@@ -68,5 +68,35 @@ yargs.command({
   }
 })
 
+yargs.command({
+  command: "detail",
+  decribe: "Menampilkan detail sebuah kontak berdasarkan nama",
+  builder: {
+    nama: {
+      describe: "nama",
+      demandOption: true,
+      type: "string"
+    }
+  },
+  handler(argv){
+    contact.detailContact( argv.nama );
+  }
+})
+
+yargs.command({
+  command: "delete",
+  decribe: "Menghapus sebuah kontak berdasarkan nama",
+  builder: {
+    nama: {
+      describe: "nama",
+      demandOption: true,
+      type: "string"
+    }
+  },
+  handler(argv){
+    contact.hapusContact( argv.nama );
+  }
+})
+
 
 yargs.parse();
